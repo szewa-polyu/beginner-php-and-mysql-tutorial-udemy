@@ -1,6 +1,6 @@
 <?php
 
-require("dbWIP/connectDB.php");
+require_once("dbWIP/connectDB.php");
 
 if (connectDB(true)) {
   $people_SQLdelete = "DELETE FROM tPerson WHERE CompanyID > '200'"; 

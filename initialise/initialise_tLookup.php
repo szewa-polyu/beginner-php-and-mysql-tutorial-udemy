@@ -1,11 +1,13 @@
 <?php
 /*
 
-*	File:			tCompanyInitialise.php
+*	File:			initialise_tLookup.php
 *	By:			TMIT
 *	Date:		
 *
-*	This script initialises the tCompany TABLE
+*	This script initialises the tLookup TABLE
+*		by populating it with a list of Salutations
+*		for use in the table tPerson
 *
 *
 *=====================================
@@ -15,22 +17,15 @@ require_once("dbWIP/connectDB.php");
 
 if (connectDB(true)) {
 
-	
 	{	//		Table Definition 
-		$tableName = "tCompany";	
-		$CSVfilename = "Initialise/Companies.csv";
+		$tableName = "tLookup";	
+		$CSVfilename = "initialise/Lookup_Salutations.csv";
 
+		//		ONLY the fields to insert - NOT any auto_inc field	
 		$tableField = array(
-					'preName',
-					'Name',
-					'RegType',
-					'StreetA',			
-					'StreetB',			
-					'StreetC',			
-					'Town',			
-					'County',			
-					'Postcode',			
-					'COUNTRY'				
+					'lookupType',
+					'lookupValue' ,
+					'lookupOrder'
 		);
 		$numFields = sizeof($tableField);
 		
@@ -39,21 +34,16 @@ if (connectDB(true)) {
 		$createTable_SQL = "
 					CREATE TABLE alphacrm.".$tableName." (
 					ID INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-					preName VARCHAR( 50 ) ,
-					Name VARCHAR( 250 ) NOT NULL,
-					RegType VARCHAR( 50 )  NULL,
-					
-					StreetA VARCHAR( 150 )  NULL,
-					StreetB VARCHAR( 150 )  NULL,
-					StreetC VARCHAR( 150 )  NULL,
-					Town VARCHAR( 150 )  NULL,
-					County VARCHAR( 150 )  NULL,
-					Postcode VARCHAR( 50 )  NULL,
-					
-					COUNTRY VARCHAR( 250 ) NOT NULL
+					lookupType VARCHAR( 50 ) NOT NULL,
+					lookupValue VARCHAR( 250 ) NOT NULL, 
+					lookupOrder INT( 11 ) NOT NULL DEFAULT '0'
 		)";
+		
+		//		set startInsertsField to 1 if first field is auto_increment
+		//			otherwise set to 0.
+
 	}
-	
+
 	//	=======^^^^^^^^^^^^^^^^^^^^^^^=========  End of Definition Part ======^^^^^^^^^=====
 
 										

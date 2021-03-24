@@ -1,6 +1,6 @@
 <?php
 
-require("dbWIP/connectDB.php");
+require_once("dbWIP/connectDB.php");
 
 if (connectDB(true)) {
   $company_SQLinsert = "INSERT INTO tCompany ( ";

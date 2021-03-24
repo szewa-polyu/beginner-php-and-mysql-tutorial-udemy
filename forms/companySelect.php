@@ -1,13 +1,13 @@
 <?php
 /*
 
-*	File:			companyEdit.php
+*	File:			companySelect.php
 *	By:			TMIT
 *	Date:		2010-06-01
 *
 *	This script defines an HTML form using a dropdown
-* 		to select which company to edit.
-*
+* 		to select a company from tCompany
+*		and passes tCompany.ID to companyListPeople.php
 *
 *=====================================
 */
@@ -25,7 +25,7 @@ if (connectDB(true)) {
 
 	$tCompany_SQLselect_Query = mysql_query($tCompany_SQLselect);	
 	
-	echo '<form action="' . $routeKeys['companyEditForm'] . '" method="post">';
+	echo '<form action="' . $routeKeys['companyListPeople'] . '" method="post">';
 	
 	echo '<select name="companyID">';
 	
@@ -37,7 +37,9 @@ if (connectDB(true)) {
 			    $preName = $row['preName'];
 			    $companyName = $row['Name'];
 			    
-			    $fullCoyName = trim($preName." ".$companyName);
+          $RegType = $row['RegType'];
+			    
+			    $fullCoyName = trim($preName." ".$companyName." ".$RegType);
 			    
 			    echo '<option value="'.$ID.'">'.$fullCoyName.'</option>';
 			}

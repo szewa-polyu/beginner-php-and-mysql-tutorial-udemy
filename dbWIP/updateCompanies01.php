@@ -1,6 +1,6 @@
 <?php
 
-require("dbWIP/connectDB.php");
+require_once("dbWIP/connectDB.php");
 
 if (connectDB(true)) {  
   // SQL to change country value from UK to United Kingdom 

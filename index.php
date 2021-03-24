@@ -8,8 +8,11 @@
 =====================================
 */
 
-require('htconfig/routes.php');
+require_once('htconfig/routes.php');
 
+require_once('components/Link.php');
+
+require_once('utils/getAssocArraySafe.php');
 
 $br = '<br />';
 
@@ -21,9 +24,17 @@ echo 'url = ' . $url . $br;
 //   echo $key . " => " . $value . "<br>";
 // }
 
+// trim $url to get $path (without query string part)
+
 $projectFolder = '/my_development/beginner-php-and-mysql-tutorial-udemy/';
 
 $path = substr($url, strlen($projectFolder));
+
+$queryPos = strpos($path, '?');
+
+if ($queryPos > -1) {
+	$path = substr($path, 0, $queryPos);
+}
 
 echo 'path = ' . $path  . $br;
 
@@ -35,7 +46,7 @@ if (!empty($path) && $path !== $routeKeys['index']) {
 
 		echo 'fileToRequire = ' . $fileToRequire . $br . $br;
 
-		require($fileToRequire);
+		require_once($fileToRequire);
 
 		exit();
 	}
@@ -60,24 +71,19 @@ if (!empty($path) && $path !== $routeKeys['index']) {
 	
 	echo '<h2 style="font-family: arial, helvetica, sans-serif;" >
 				Infinite Skills - php/MySQL Training
-			</h2>';
-	echo '<div align="left",
-				  style="
-				  font-family: arial, helvetica, sans-serif; 
-				  font-style: sans-serif; 
-				  padding-left: 50px;
-			">';
-				
-				
-		echo '<a href="' . $routeKeys['companyCreate'] . '">
-				<span style="color: maroon; ">Create New company</span>
-				</a>';
-		echo '<br /><br />';
+			</h2>';	
 
-		echo '<a href="' . $routeKeys['companyEdit'] . '">
-				<span style="color: maroon; ">Edit company</span>
-				</a>';
-		echo '<br /><br />';
+		MyLink($routeKeys['companyListOrder'], 'List Companies');
+		echo $br . $br;
+		
+		MyLink($routeKeys['companyCreate'], 'Create New company');
+		echo $br . $br;
+
+		MyLink($routeKeys['companyEdit'], 'Edit company');
+		echo $br . $br;
+
+		MyLink($routeKeys['companyPeopleEdit'], 'List People in a Company');		
+		echo $br . $br;
 
 	echo '</div>';
 

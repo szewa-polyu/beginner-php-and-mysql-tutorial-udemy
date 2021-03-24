@@ -75,6 +75,6 @@ echo "<br />";
 
 echo "<br /><hr /><br />";
 
-echo '<a href="' . $routeKeys['index'] . '">Quit - to homepage</a>';
+MyLink($routeKeys['index'], 'Quit - to homepage');
 
 ?>

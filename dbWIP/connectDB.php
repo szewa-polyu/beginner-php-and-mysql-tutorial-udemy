@@ -1,6 +1,6 @@
 <?php
 
-require('htconfig/dbconf.php');
+require_once('htconfig/dbconf.php');
 
 function connectDB($isSelectDB = true) {
   global $db;

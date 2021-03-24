@@ -13,7 +13,7 @@
 *=====================================
 */
 
-require("dbWIP/connectDB.php");
+require_once("dbWIP/connectDB.php");
 
 if (connectDB(true)) {
 		
@@ -82,8 +82,8 @@ if (connectDB(true)) {
 
 echo "<br /><hr /><br />";
 
-echo '<a href="' . $routeKeys['companyCreate'] . '">Create another company</a>';
+MyLink($routeKeys['companyCreate'], 'Create another company');
 echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-echo '<a href="' . $routeKeys['index'] . '">Quit - to homepage</a>';
+MyLink($routeKeys['index'], 'Quit - to homepage');
 
 ?>
